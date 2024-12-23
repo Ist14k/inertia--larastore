@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->longText('description');
-            $table->decimal('price', 20, 4)->required();
-            $table->integer('quantity')->required();
+            $table->decimal('price', 20, 4);
+            $table->integer('quantity');
             $table->foreignIdFor(\App\Models\Department::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(\App\Models\Category::class)->constrained()->cascadeOnDelete();
             $table->string('status')->default('draft')->index();
@@ -29,6 +29,8 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
     public function down(): void
     {
