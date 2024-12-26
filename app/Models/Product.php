@@ -13,7 +13,7 @@ class Product extends Model implements HasMedia
 
     protected $guarded = [];
 
-    public function registerAllMediaConversions(?Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width(100);
@@ -33,6 +33,11 @@ class Product extends Model implements HasMedia
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function variationTypes()
+    {
+        return $this->hasMany(VariationType::class);
     }
 
     public function createdBy()
