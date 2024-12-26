@@ -6,7 +6,6 @@ use App\Enum\ProductStatusEnum;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\Pages\EditProduct;
 use App\Filament\Resources\ProductResource\Pages\ProductImages;
-use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
@@ -15,7 +14,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
 use Filament\Forms\Set;
 use Filament\FOrms\Get;
@@ -23,6 +21,7 @@ use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Pages\Page;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Filters\SelectFilter;
+use App\Filament\Resources\ProductResource\Pages\ProductVariationTypes;
 
 class ProductResource extends Resource
 {
@@ -132,6 +131,7 @@ class ProductResource extends Resource
             'create' => Pages\CreateProduct::route('/create'),
             'edit' => Pages\EditProduct::route('/{record}/edit'),
             'images' => Pages\ProductImages::route('/{record}/images'),
+            'variation_types' => Pages\ProductVariationTypes::route('/{record}/variation-types'),
         ];
     }
 
@@ -140,7 +140,8 @@ class ProductResource extends Resource
     {
         return $page->generateNavigationItems([
             EditProduct::class,
-            ProductImages::class
+            ProductImages::class,
+            ProductVariationTypes::class,
         ]);
     }
 }
