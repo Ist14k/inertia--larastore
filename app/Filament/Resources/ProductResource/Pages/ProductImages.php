@@ -11,7 +11,6 @@ use Filament\Resources\Pages\EditRecord;
 class ProductImages extends EditRecord
 {
     protected static string $resource = ProductResource::class;
-
     protected static ?string $navigationIcon = 'heroicon-c-photo';
 
     public function form(Form $form): Form
