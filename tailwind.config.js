@@ -9,6 +9,9 @@ export default {
     './resources/views/**/*.blade.php',
     './resources/js/**/*.tsx',
   ],
+  daisyui: {
+    logs: false,
+  },
 
   theme: {
     extend: {
