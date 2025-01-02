@@ -8,7 +8,6 @@ use App\Filament\Resources\ProductResource\Pages\EditProduct;
 use App\Filament\Resources\ProductResource\Pages\ProductImages;
 use App\Models\Product;
 use Filament\Forms;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -48,13 +47,15 @@ class ProductResource extends Resource
                     ->searchable()
                     ->required()
                     ->reactive()
-                    ->afterStateUpdated(fn(Set $set, ?string $state) => $set('category_id', null)),
+                    ->afterStateUpdated(fn(Set $set) => $set('category_id', null)),
                 Forms\Components\Select::make('category_id')
                     ->label(__('Category'))
                     ->relationship(
                         name: 'category',
                         titleAttribute: 'name',
-                        modifyQueryUsing: fn(Builder $query, Get $get) => $query->where('department_id', $get('department_id')) ?? null
+                        modifyQueryUsing: fn(Builder $query, Get $get)
+                            => $query->where('department_id', $get('department_id'))
+                            ?? null
                     )
                     ->preload()
                     ->searchable()
@@ -136,6 +137,7 @@ class ProductResource extends Resource
     }
 
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::End;
+
     public static function getRecordSubNavigation(Page $page): array
     {
         return $page->generateNavigationItems([

@@ -15,7 +15,6 @@ use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Forms\Set;
 
-
 class DepartmentResource extends Resource
 {
     protected static ?string $model = Department::class;
